@@ -1,0 +1,15 @@
+* {
+    front-family: Arial, sans-serif;
+    front-size: 18px;
+}
+    body {
+        background-color: #9b10ad;
+        color: #333;
+}
+ main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: aliceblue;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.973);
+}

@@ -13,3 +13,9 @@
     background-color: aliceblue;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.973);
 }
+img.lado {
+    float: right;
+    margin-right: 20px;
+    width: 200px;
+    height: auto;
+}

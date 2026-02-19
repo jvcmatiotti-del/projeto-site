@@ -28,7 +28,7 @@ export default function SegurancaUberMulheres() {
     },
     {
       icon: <AlertTriangle className="w-6 h-6" />,
-      title: "Confie na sua intuição",
+      title: "Confie na sua intuição!",
       text: "Se algo parecer errado, cancele a corrida e procure um local seguro. Sua segurança vem primeiro.",
     },
   ];

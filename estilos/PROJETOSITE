@@ -8,7 +8,7 @@ export default function SegurancaUberMulheres() {
   const tips = [
     {
       icon: <ShieldCheck className="w-6 h-6" />,
-      title: "Confira o motorista",
+      title: "Confira o motorista!",
       text: "Antes de entrar no carro, confirme a placa, o nome do motorista e a foto no aplicativo. Nunca aceite corridas fora do app.",
     },
     {

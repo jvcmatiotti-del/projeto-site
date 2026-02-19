@@ -1,0 +1,158 @@
+import React, { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { ShieldCheck, Phone, MapPin, AlertTriangle, MessageCircle } from "lucide-react";
+import { motion } from "framer-motion";
+
+export default function SegurancaUberMulheres() {
+  const tips = [
+    {
+      icon: <ShieldCheck className="w-6 h-6" />,
+      title: "Confira o motorista",
+      text: "Antes de entrar no carro, confirme a placa, o nome do motorista e a foto no aplicativo. Nunca aceite corridas fora do app.",
+    },
+    {
+      icon: <MapPin className="w-6 h-6" />,
+      title: "Compartilhe sua viagem",
+      text: "Use a função de compartilhar rota com amigos ou familiares para que alguém acompanhe seu trajeto em tempo real.",
+    },
+    {
+      icon: <Phone className="w-6 h-6" />,
+      title: "Finja uma ligação",
+      text: "Se sentir desconforto, faça ou finja uma ligação informando que alguém está esperando você no destino.",
+    },
+    {
+      icon: <ShieldCheck className="w-6 h-6" />,
+      title: "Posicione-se atrás do motorista",
+      text: "Prefira sentar no banco traseiro, atrás do motorista. Essa posição reduz o alcance físico e aumenta sua capacidade de sair rapidamente do veículo se necessário.",
+    },
+    {
+      icon: <AlertTriangle className="w-6 h-6" />,
+      title: "Confie na sua intuição",
+      text: "Se algo parecer errado, cancele a corrida e procure um local seguro. Sua segurança vem primeiro.",
+    },
+  ];
+
+  const [relato, setRelato] = useState("");
+  const [relatos, setRelatos] = useState([]);
+
+  const adicionarRelato = () => {
+    if (!relato.trim()) return;
+    setRelatos([{ texto: relato, id: Date.now() }, ...relatos]);
+    setRelato("");
+  };
+
+  return (
+    <div className="min-h-screen bg-pink-50 text-gray-800">
+      {/* Header */}
+      <header className="flex justify-between items-center px-6 py-4 bg-white shadow-sm">
+        <h1 className="text-2xl font-bold text-pink-600">🚗 JotaUber</h1>
+        <nav className="space-x-4 text-sm">
+          <a href="#dicas" className="hover:text-pink-600">Dicas</a>
+          <a href="#relatos" className="hover:text-pink-600">Relatos</a>
+          <a href="#emergencia" className="hover:text-pink-600">Emergência</a>
+        </nav>
+      </header>
+
+      {/* Hero Section */}
+      <section className="text-center py-16 px-6">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-4xl md:text-5xl font-bold mb-4"
+        >
+          Segurança para Mulheres no Uber
+        </motion.h2>
+        <p className="max-w-2xl mx-auto text-lg">
+          O JotaUber ajuda mulheres a viajarem com mais segurança através de
+          boas práticas e relatos reais da comunidade.
+        </p>
+        <Button className="mt-6 rounded-2xl">Ver Dicas</Button>
+      </section>
+
+      {/* Tips Section */}
+      <section id="dicas" className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 px-6 pb-16 max-w-6xl mx-auto">
+        {tips.map((tip, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: index * 0.1 }}
+          >
+            <Card className="rounded-2xl shadow-lg hover:shadow-xl transition">
+              <CardContent className="p-6">
+                <div className="mb-3 text-pink-600">{tip.icon}</div>
+                <h3 className="font-semibold text-lg mb-2">{tip.title}</h3>
+                <p className="text-sm leading-relaxed">{tip.text}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        ))}
+      </section>
+
+      {/* Anonymous Reports */}
+      <section id="relatos" className="bg-white py-16 px-6">
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-3xl font-bold text-center mb-6">
+            Relatos Anônimos
+          </h2>
+          <p className="text-center mb-8 text-gray-600">
+            Compartilhe experiências para ajudar outras mulheres. Nenhum dado
+            pessoal é exibido.
+          </p>
+
+          <Card className="rounded-2xl mb-8">
+            <CardContent className="p-6 space-y-4">
+              <textarea
+                value={relato}
+                onChange={(e) => setRelato(e.target.value)}
+                placeholder="Conte seu relato de forma anônima..."
+                className="w-full border rounded-xl p-3 min-h-[120px] focus:outline-none focus:ring-2 focus:ring-pink-400"
+              />
+              <Button onClick={adicionarRelato} className="rounded-2xl">
+                <MessageCircle className="w-4 h-4 mr-2" />
+                Enviar Relato
+              </Button>
+            </CardContent>
+          </Card>
+
+          <div className="space-y-4">
+            {relatos.length === 0 && (
+              <p className="text-center text-gray-500">
+                Ainda não há relatos. Seja a primeira a compartilhar.
+              </p>
+            )}
+
+            {relatos.map((r) => (
+              <Card key={r.id} className="rounded-2xl">
+                <CardContent className="p-4 text-sm leading-relaxed">
+                  {r.texto}
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Emergency Section */}
+      <section id="emergencia" className="bg-pink-100 py-16 px-6 text-center">
+        <h2 className="text-3xl font-bold mb-4">Em caso de emergência</h2>
+        <p className="max-w-xl mx-auto mb-6">
+          Use o botão de emergência do aplicativo e entre em contato com
+          autoridades locais imediatamente.
+        </p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Button className="rounded-2xl">Ligar 190</Button>
+          <Button variant="outline" className="rounded-2xl">
+            Compartilhar localização
+          </Button>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="text-center py-8 text-sm text-gray-500">
+        © {new Date().getFullYear()} JotaUber — Segurança Feminina em Apps de Transporte
+      </footer>
+    </div>
+  );
+}
